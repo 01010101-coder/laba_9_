@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.nio.IntBuffer;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -132,14 +133,14 @@ public class ClientMain {
 
     static TreeMap<String, Byte> commands = new TreeMap<>();
     static {
-        commands.put("q", (byte) -1);
-        commands.put("quit", (byte) -1);
-        commands.put("m", (byte) Protocol.CMD_CHECK_MAIL);
-        commands.put("mail", (byte) Protocol.CMD_CHECK_MAIL);
-        commands.put("u", (byte) Protocol.CMD_USER);
-        commands.put("users", (byte) Protocol.CMD_USER);
-        commands.put("l", (byte) Protocol.CMD_LETTER);
-        commands.put("letter", (byte) Protocol.CMD_LETTER);
+        commands.put("q", Byte.valueOf((byte)-1));
+        commands.put("quit", Byte.valueOf((byte)-1));
+        commands.put("m", Byte.valueOf((byte) Protocol.CMD_CHECK_MAIL));
+        commands.put("mail", Byte.valueOf((byte) Protocol.CMD_CHECK_MAIL));
+        commands.put("u", Byte.valueOf((byte) Protocol.CMD_USER));
+        commands.put("users", Byte.valueOf((byte) Protocol.CMD_USER));
+        commands.put("l", Byte.valueOf((byte) Protocol.CMD_LETTER));
+        commands.put("letter", Byte.valueOf((byte) Protocol.CMD_LETTER));
     }
 
     static byte translateCmd(String str) {
@@ -160,7 +161,6 @@ public class ClientMain {
         if (msg != null) {
             os.writeObject(msg);
             MessageResult res = (MessageResult) is.readObject();
-
             if (res.Error()) {
                 System.err.println(res.getErrorMessage());
             } else {

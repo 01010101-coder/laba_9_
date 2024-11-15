@@ -10,6 +10,9 @@ public class Message implements Serializable {
     public byte getID() {
         return id;
     }
+    public void setID(byte x) {
+        id = x;
+    }
 
     protected Message() {
         assert( false );

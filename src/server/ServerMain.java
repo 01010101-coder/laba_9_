@@ -195,7 +195,7 @@ class ServerThread extends Thread {
     public synchronized String[] getLetters() {
         if (letters != null && !letters.isEmpty()) {
             String[] lts = letters.toArray(new String[0]);
-            letters.clear();  // Очищаем после чтения
+            //letters.clear();  // Очищаем после чтения
             return lts;
         }
         return new String[0];
@@ -325,7 +325,7 @@ class ServerThread extends Thread {
             if (userThread != null) {
                 userThread.addLetter(message);  // Добавляем сообщение в очередь почты
 
-                try {
+                /*try {
                     // Задержка перед отправкой сообщения следующему пользователю
                     Thread.sleep(100);  // Задержка 100 мс
 
@@ -335,7 +335,7 @@ class ServerThread extends Thread {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
-                }
+                }*/
             }
         }
     }
